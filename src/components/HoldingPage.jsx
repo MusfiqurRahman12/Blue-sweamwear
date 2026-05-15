@@ -1,14 +1,23 @@
 import { useState } from 'react'
 import './HoldingPage.css'
 
-const MAILTO_LINK = `mailto:scott@verynewyork.com?subject=${encodeURIComponent('blú swimwear early experiencer request')}&body=${encodeURIComponent("I'd like to learn more about blú swimwear as soon as you can share.\r\n\r\nTeam blú")}`
+
 
 function HoldingPage() {
   const [email, setEmail] = useState('')
 
   const handleEnter = (e) => {
     e.preventDefault()
-    window.location.href = MAILTO_LINK
+    
+    if (!email.trim()) {
+      alert('Please enter your e-mail address first.')
+      return
+    }
+
+    const customBody = `I'd like to learn more about blú swimwear as soon as you can share.\r\n\r\nMy email is: ${email.trim()}\r\n\r\nTeam blú`
+    const mailtoLink = `mailto:scott@verynewyork.com?subject=${encodeURIComponent('blú swimwear early experiencer request')}&body=${encodeURIComponent(customBody)}`
+    
+    window.location.href = mailtoLink
   }
 
   return (
