@@ -1,53 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@200;300;400;500&display=swap');
-
-:root {
-    --primary-font: 'Montserrat', sans-serif;
-    --heading-font: 'Cinzel', serif;
-    --text-color: #ffffff;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    height: 100vh;
-    width: 100vw;
-    font-family: var(--primary-font);
-    color: var(--text-color);
-    background-image: url('tropical sunset screen holder.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    background-color: #000;
-}
-
-/* The dark overlay was removed to reveal the image.
-   We now use a premium editorial-style glass panel to frame the text elegantly. */
-.container {
+/* ── Glass Panel Container ── */
+.holding-container {
     width: 100%;
     max-width: 650px;
-    margin-left: 10%;
-    background: rgba(0, 0, 0, 0.35); /* Elegant, translucent dark panel */
+    margin-top: auto;
+    margin-bottom: auto;
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     padding: 4rem 5rem;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
     animation: fadeSlideUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     opacity: 0;
     transform: translateY(30px);
     position: relative;
 }
 
-/* Subtle corner accents for a luxury feel */
-.container::before, .container::after {
+/* Luxury corner accents */
+.holding-container::before,
+.holding-container::after {
     content: '';
     position: absolute;
     width: 15px;
@@ -56,20 +27,21 @@ body {
     opacity: 0.5;
 }
 
-.container::before {
+.holding-container::before {
     top: 15px;
     left: 15px;
     border-right: none;
     border-bottom: none;
 }
 
-.container::after {
+.holding-container::after {
     bottom: 15px;
     right: 15px;
     border-left: none;
     border-top: none;
 }
 
+/* ── Logo ── */
 .logo {
     width: 190px;
     margin-bottom: 3.5rem;
@@ -77,6 +49,7 @@ body {
     opacity: 0;
 }
 
+/* ── Tagline ── */
 .tagline {
     font-family: var(--heading-font);
     font-size: 1.5rem;
@@ -89,6 +62,7 @@ body {
     opacity: 0;
 }
 
+/* ── Message Block ── */
 .message {
     font-size: 1.05rem;
     line-height: 1.9;
@@ -111,6 +85,7 @@ body {
     margin-bottom: 0;
 }
 
+/* ── Call to Action ── */
 .call-to-action {
     animation: fadeIn 1.2s ease 1s forwards;
     opacity: 0;
@@ -124,6 +99,7 @@ body {
     letter-spacing: 1.5px;
 }
 
+/* ── Form ── */
 .form-wrapper {
     display: flex;
     align-items: stretch;
@@ -133,7 +109,8 @@ body {
     transition: all 0.4s ease;
 }
 
-.form-wrapper:hover {
+.form-wrapper:hover,
+.form-wrapper:focus-within {
     border-color: rgba(255, 255, 255, 0.6);
     background: rgba(255, 255, 255, 0.08);
 }
@@ -160,11 +137,12 @@ body {
 .enter-button {
     background: #ffffff;
     color: #000000;
-    text-decoration: none;
+    border: none;
     padding: 0 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--primary-font);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -174,71 +152,80 @@ body {
 }
 
 .enter-button:hover {
-    background: #d4af37; /* Very subtle luxury gold tint on hover */
+    background: #d4af37;
     color: #ffffff;
 }
 
+/* ── Animations ── */
 @keyframes fadeSlideUp {
-    to { opacity: 1; transform: translateY(0); }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeIn {
-    to { opacity: 1; }
+    to {
+        opacity: 1;
+    }
 }
 
-/* Responsive constraints */
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-    .container {
-        margin-left: 5%;
-        padding: 3rem 4rem;
-        max-width: 600px;
+    .holding-container {
+        padding: 3rem 3rem;
     }
 }
 
 @media (max-width: 768px) {
-    body {
-        align-items: flex-end;
-        padding-bottom: 2rem;
-    }
-    
-    .container {
-        margin: 0 auto;
+    .holding-container {
         padding: 2.5rem 2rem;
-        max-width: 90%;
     }
-    
+
     .tagline {
         font-size: 1.2rem;
         letter-spacing: 2px;
+        margin-bottom: 1.5rem;
     }
-    
+
     .message {
         font-size: 1rem;
         border-left: none;
         padding-left: 0;
+        margin-bottom: 2rem;
+    }
+    
+    .logo {
+        width: 150px;
+        margin-bottom: 2rem;
     }
 }
 
 @media (max-width: 480px) {
+    .holding-container {
+        padding: 2rem 1.5rem;
+    }
+    
     .form-wrapper {
         flex-direction: column;
         height: auto;
         border: none;
         background: transparent;
     }
-    
-    .form-wrapper:hover {
+
+    .form-wrapper:hover,
+    .form-wrapper:focus-within {
         background: transparent;
         border: none;
     }
-    
+
     .email-input {
         height: 50px;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.2);
         margin-bottom: 1rem;
     }
-    
+
     .enter-button {
         height: 50px;
         width: 100%;
